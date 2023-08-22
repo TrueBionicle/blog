@@ -1,19 +1,16 @@
 import "./CreateAccount.scss";
 import { Button, Checkbox, Form, Input, message } from "antd";
 import { Link } from "react-router-dom";
-import { registration } from "../../testApi";
+import { registration } from "../../store/userAsyncThunk";
 import { useDispatch } from "react-redux";
 import { notification } from "../Notification/Notification";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useEffect } from "react";
 const CreateAccount = () => {
   const dispatch = useDispatch();
-  const stateMessage = useSelector((state) => state.stateMessage);
-  const currentArticle = useSelector((state) => state.currentArticle);
-  const isUpdate = false;
+  const stateMessage = useSelector((state) => state.user.stateMessage);
   const [messageApi, contextHolder] = message.useMessage();
   const onFinish = (values) => {
-    console.log(values);
     dispatch(
       registration({
         username: values.username,

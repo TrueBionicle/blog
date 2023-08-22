@@ -3,16 +3,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { Checkbox } from "@mui/material";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
-import { setFavoriteArticle, unfavoriteAnArticle } from "../../testApi";
+import {
+  setFavoriteArticle,
+  unfavoriteAnArticle,
+} from "../../store/articleAsyncThunk";
 import uniqueKey from "../utilites/uniqueKey";
 
 import "./Article.scss";
 
 const Article = (props) => {
   const { article, singlePage } = props;
-  console.log(singlePage);
-  console.log(article);
-  const login = useSelector((state) => state.login);
+  const login = useSelector((state) => state.user.login);
   const [checkFavorite, setCheckFavorite] = useState(article.favorited);
   const [favoritesCount, setFavoritesCount] = useState(article.favoritesCount);
   const dispatch = useDispatch();

@@ -1,15 +1,15 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getArticleBySlug, deleteArticle } from "../../testApi";
+import { getArticleBySlug, deleteArticle } from "../../store/articleAsyncThunk";
 import Article from "../Article/Article";
 import "./SingleArticle.scss";
 import uniqueKey from "../utilites/uniqueKey";
 
 const SingleArticle = () => {
-  const currentArticle = useSelector((state) => state.currentArticle);
-  const loading = useSelector((state) => state.loading);
-  const login = useSelector((state) => state.login);
+  const currentArticle = useSelector((state) => state.articles.currentArticle);
+  const loading = useSelector((state) => state.articles.loading);
+  const login = useSelector((state) => state.user.login);
   const { slug } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {

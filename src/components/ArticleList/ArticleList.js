@@ -2,21 +2,23 @@ import Article from "../Article/Article";
 import { useDispatch, useSelector } from "react-redux";
 
 import CircularIndeterminate from "./../utilites/loadingIndicator";
-import { getArticles } from "../../testApi";
+import { getArticles } from "../../store/articleAsyncThunk";
 import Pagination from "../Pagination/pagination";
 import "./ArticleList.scss";
 import { useEffect } from "react";
 import uniqueKey from "../utilites/uniqueKey";
 const ArticleList = () => {
   const dispatch = useDispatch();
-  const articles = useSelector((state) => state.articles);
+  const articles = useSelector((state) => state.articles.articles);
   const articleRequestStatus = useSelector(
-    (state) => state.articleRequestStatus
+    (state) => state.articles.articleRequestStatus
   );
+
   const loadingState = useSelector((state) => state.loading);
   useEffect(() => {
     dispatch(getArticles(1));
   }, [dispatch]);
+
   return (
     <>
       {articleRequestStatus === "fulfilled" && (

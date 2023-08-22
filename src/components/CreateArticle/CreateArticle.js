@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./CreateArticle.scss";
 import { Form, Input, Checkbox, Button } from "antd";
 import uniqueKey from "../utilites/uniqueKey";
-import { createArticle } from "../../testApi";
+import { createArticle } from "../../store/articleAsyncThunk";
 import { useDispatch } from "react-redux";
 
 const CreateArticle = () => {

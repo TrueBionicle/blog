@@ -1,8 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./EditProfile.scss";
-import { Form, Input, Checkbox, Button } from "antd";
+import { Form, Input, Button } from "antd";
 
-import { checkAuth, updateProfile } from "../../testApi";
+import { updateProfile } from "../../store/userAsyncThunk";
 
 const EditProfile = () => {
   const dispatch = useDispatch();

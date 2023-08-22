@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Button } from "antd";
 import uniqueKey from "../utilites/uniqueKey";
-import { updateArticle, getArticleBySlug } from "../../testApi";
+import { updateArticle, getArticleBySlug } from "../../store/articleAsyncThunk";
 import { useParams } from "react-router-dom";
 
 const EditArticle = () => {
   const dispatch = useDispatch();
-  const currentArticle = useSelector((state) => state.currentArticle);
+  const currentArticle = useSelector((state) => state.articles.currentArticle);
   const [tagList, setTagList] = useState([]);
 
   const [tagValue, setTagValue] = useState("");

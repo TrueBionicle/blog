@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 
 import "./Header.scss";
 import { useEffect } from "react";
-import { checkAuth } from "../../testApi";
+import { checkAuth } from "../../store/userAsyncThunk";
 import { useDispatch, useSelector } from "react-redux";
 const Header = () => {
-  const login = useSelector((state) => state.login);
-  const username = useSelector((state) => state.username);
+  const login = useSelector((state) => state.user.login);
+  const username = useSelector((state) => state.user.username);
   const logOut = () => {
     localStorage.setItem("token", "");
   };

@@ -1,7 +1,7 @@
 import "./SignIn.scss";
 import { Button, Checkbox, Form, Input, message } from "antd";
 import { Link } from "react-router-dom";
-import { signIn } from "../../testApi";
+import { signIn } from "../../store/userAsyncThunk";
 import { useDispatch } from "react-redux";
 const SignIn = () => {
   const dispatch = useDispatch();
