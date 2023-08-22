@@ -1,0 +1,57 @@
+.create_article_modal {
+  width: 930px;
+  height: auto;
+  padding: 50px;
+
+  margin: 0 auto;
+  margin-top: 50px;
+  background-color: #fff;
+
+  &__title {
+    text-align: center;
+    margin: 0;
+  }
+}
+
+.form_button--create {
+  margin-top: 80px;
+  width: 30%;
+}
+.tag__wrapper {
+  display: flex;
+  width: 500px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.tag {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  &__text {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 200px;
+    height: 40px;
+  }
+
+  &__button_delete {
+    margin-left: 5px;
+    background-color: #fff;
+    border: 1px solid #eb3535;
+    color: #eb3535;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}
+.button_add {
+  height: 40px;
+  margin-top: 10px;
+  margin-left: 5px;
+  background-color: #fff;
+  border: 1px solid #1677ff;
+  color: #1677ff;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}

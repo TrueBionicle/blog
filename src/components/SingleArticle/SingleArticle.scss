@@ -1,0 +1,36 @@
+.single_article {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.article--single {
+  height: auto !important;
+}
+.article__info__text--single {
+  display: block !important;
+}
+.article__user__buttons {
+  position: absolute;
+  top: 130px;
+  right: 510px;
+}
+
+.article__user__button {
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 15px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-left: 10px;
+  &__delete {
+    border: 2px solid red;
+    color: red;
+  }
+  &__edit {
+    border: 2px solid rgba(89, 202, 33, 0.7960784314);
+    color: rgba(89, 202, 33, 0.7960784314);
+  }
+}

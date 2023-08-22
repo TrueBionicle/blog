@@ -1,0 +1,36 @@
+.create_account_modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 380px;
+  height: 600px;
+
+  margin: 0 auto;
+  margin-top: 40px;
+
+  border-radius: 3px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 21px 0px rgba(34, 60, 80, 0.2);
+
+  &__title {
+    margin-top: 40px;
+  }
+  &__form {
+    width: 100%;
+    padding: 0 40px 0 40px;
+    margin-inline-start: 0;
+  }
+  &__footer {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.form_button {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 0;
+  &__wrapper {
+    margin-bottom: 15px;
+  }
+}
