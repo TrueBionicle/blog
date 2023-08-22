@@ -134,6 +134,7 @@ export const setFavoriteArticle = createAsyncThunk(
       .then((res) => console.log(res));
   }
 );
+
 export const unfavoriteAnArticle = createAsyncThunk(
   "setFavoriteArticle",
   async function (slug) {

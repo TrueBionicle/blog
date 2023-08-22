@@ -4,20 +4,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Button } from "antd";
 import uniqueKey from "../utilites/uniqueKey";
 import { updateArticle, getArticleBySlug } from "../../store/articleAsyncThunk";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const EditArticle = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentArticle = useSelector((state) => state.articles.currentArticle);
   const [tagList, setTagList] = useState([]);
-
   const [tagValue, setTagValue] = useState("");
   const { TextArea } = Input;
+
   const handleClickDeleteTag = (currentIndex) => {
     setTagList(tagList.filter((_, index) => index !== currentIndex));
   };
+
   const { slug } = useParams();
-  console.log(currentArticle);
+
   useEffect(() => {
     dispatch(getArticleBySlug(slug));
   }, []);
@@ -29,17 +31,21 @@ const EditArticle = () => {
     }
   };
 
-  if (currentArticle !== null && tagList.length === 0) {
+  if (
+    currentArticle !== null &&
+    currentArticle.tagList.length !== 0 &&
+    tagList.length === 0
+  ) {
     setTagList(currentArticle.tagList);
   }
 
   const onFinish = (values) => {
     const slug = currentArticle.slug;
     const result = { ...values, tagList, slug };
-    console.log(result);
     dispatch(updateArticle(result));
+    navigate("/articles");
   };
-  return tagList.length !== 0 ? (
+  return currentArticle !== null ? (
     <div className="create_article_modal">
       <h2 className="create_article_modal__title">Edit Article</h2>
       <Form
@@ -63,7 +69,6 @@ const EditArticle = () => {
           name="title"
           rules={[
             {
-              //   required: true,
               message: "Please input title!",
             },
           ]}
@@ -75,7 +80,6 @@ const EditArticle = () => {
           name="description"
           rules={[
             {
-              //   required: true,
               message: "Email is not valid",
             },
           ]}
@@ -83,11 +87,7 @@ const EditArticle = () => {
           <Input defaultValue={currentArticle.description} />
         </Form.Item>
 
-        <Form.Item
-          name="text"
-          label="Text"
-          //  rules={[{ required: true }]}
-        >
+        <Form.Item name="text" label="Text">
           <TextArea defaultValue={currentArticle.body} rows={8}></TextArea>
         </Form.Item>
 
@@ -144,6 +144,7 @@ const EditArticle = () => {
             type="primary"
             htmlType="submit"
             className="form_button form_button--create"
+            // onClick={}
           >
             Send
           </Button>

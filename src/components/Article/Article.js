@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Checkbox } from "@mui/material";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import {
@@ -29,7 +29,7 @@ const Article = (props) => {
     if (singlePage) {
       return "single_page";
     } else {
-      return null;
+      return "";
     }
   };
 

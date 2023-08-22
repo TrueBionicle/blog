@@ -1,10 +1,13 @@
 import "./SignIn.scss";
 import { Button, Checkbox, Form, Input, message } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../../store/userAsyncThunk";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 const SignIn = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const login = useSelector((state) => state.user.login);
   const onFinish = (values) => {
     dispatch(
       signIn({
@@ -13,6 +16,11 @@ const SignIn = () => {
       })
     );
   };
+  useEffect(() => {
+    if (login) {
+      navigate("/articles");
+    }
+  }, [login]);
 
   return (
     <div className="SignIn">
@@ -66,7 +74,7 @@ const SignIn = () => {
           className="form_button__wrapper"
         >
           <Button type="primary" htmlType="submit" className="form_button">
-            Create
+            Sign In
           </Button>
         </Form.Item>
         <span className="create_account_modal__footer">

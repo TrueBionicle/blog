@@ -1,6 +1,9 @@
 .single_article {
-  position: relative;
   display: flex;
+  width: 940px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  position: relative;
   align-items: center;
   flex-direction: column;
 }
@@ -10,27 +13,4 @@
 }
 .article__info__text--single {
   display: block !important;
-}
-.article__user__buttons {
-  position: absolute;
-  top: 130px;
-  right: 200px;
-}
-
-.article__user__button {
-  background-color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 15px;
-  cursor: pointer;
-  font-size: 15px;
-  margin-left: 10px;
-  &__delete {
-    border: 2px solid red;
-    color: red;
-  }
-  &__edit {
-    border: 2px solid rgba(89, 202, 33, 0.7960784314);
-    color: rgba(89, 202, 33, 0.7960784314);
-  }
 }

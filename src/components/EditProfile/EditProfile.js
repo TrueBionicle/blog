@@ -94,7 +94,7 @@ const EditProfile = () => {
           className="form_button__wrapper"
         >
           <Button type="primary" htmlType="submit" className="form_button">
-            Create
+            Edit
           </Button>
         </Form.Item>
       </Form>

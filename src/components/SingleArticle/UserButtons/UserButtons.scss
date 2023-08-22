@@ -1,0 +1,24 @@
+.article__user__buttons {
+  position: absolute;
+  top: 120px;
+  right: -20px;
+}
+
+.article__user__button {
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 15px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-left: 10px;
+  &__delete {
+    color: red;
+    border: 2px solid red;
+  }
+  &__edit {
+    text-decoration: none;
+    border: 2px solid rgba(89, 202, 33, 0.7960784314);
+    color: rgba(89, 202, 33, 0.7960784314);
+  }
+}

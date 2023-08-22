@@ -2,10 +2,12 @@ import { useState } from "react";
 import "./CreateArticle.scss";
 import { Form, Input, Checkbox, Button } from "antd";
 import uniqueKey from "../utilites/uniqueKey";
-import { createArticle } from "../../store/articleAsyncThunk";
+import { createArticle, getArticles } from "../../store/articleAsyncThunk";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const CreateArticle = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [tagList, setTagList] = useState([]);
   const [tagValue, setTagValue] = useState("");
@@ -22,9 +24,9 @@ const CreateArticle = () => {
 
   const onFinish = (values) => {
     const result = { ...values, tagList };
-    console.log(result);
-    console.log(typeof result.tagList);
     dispatch(createArticle(result));
+    dispatch(getArticles());
+    navigate("/articles");
   };
   return (
     <div className="create_article_modal">

@@ -10,6 +10,7 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     stateMessage: null,
+    isLogged: false,
     login: false,
     username: null,
     email: null,
@@ -29,9 +30,12 @@ const userSlice = createSlice({
       state.stateMessage = "created";
       state.error = true;
     },
-
+    [signIn.rejected]: (state) => {
+      state.isLogged = false;
+    },
     [signIn.fulfilled]: (state) => {
       state.login = true;
+      state.isLogged = true;
     },
     [checkAuth.rejected]: (state, action) => {
       state.login = false;

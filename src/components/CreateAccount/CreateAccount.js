@@ -1,6 +1,6 @@
 import "./CreateAccount.scss";
 import { Button, Checkbox, Form, Input, message } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { registration } from "../../store/userAsyncThunk";
 import { useDispatch } from "react-redux";
 import { notification } from "../Notification/Notification";

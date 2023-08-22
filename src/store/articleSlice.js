@@ -23,11 +23,9 @@ export const articleSlice = createSlice({
       state.articleRequestStatus = "pending";
     },
     [getArticles.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.articles = action.payload.articles;
       state.articlesCount = action.payload.articlesCount;
       state.articleRequestStatus = "fulfilled";
-      console.log(state.articleRequestStatus);
       state.loading = false;
     },
     [getArticleBySlug.pending]: (state) => {
