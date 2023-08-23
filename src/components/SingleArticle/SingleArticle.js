@@ -10,6 +10,7 @@ const SingleArticle = () => {
   const navigate = useNavigate();
   const back = () => navigate(-1);
   const currentArticle = useSelector((state) => state.articles.currentArticle);
+  const username = useSelector((state) => state.user.username);
   const loading = useSelector((state) => state.articles.loading);
   const login = useSelector((state) => state.user.login);
   const { slug } = useParams();
@@ -19,10 +20,15 @@ const SingleArticle = () => {
   }, []);
 
   if (currentArticle !== null && loading !== true) {
+    console.log(currentArticle.author.username === username);
+
     return (
       <div className="single_article ">
         <Article article={currentArticle} singlePage />
-        <UserButtons slug={slug} login={login} />
+        {currentArticle.author.username === username ? (
+          <UserButtons slug={slug} login={login} />
+        ) : null}
+
         <button onClick={back}>Back</button>
       </div>
     );

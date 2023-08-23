@@ -1,13 +1,16 @@
 import "./SignIn.scss";
-import { Button, Checkbox, Form, Input, message } from "antd";
+import { Button, Form, Input, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../../store/userAsyncThunk";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { notificationSignIn } from "../Notification/Notification";
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [messageApi, contextHolder] = message.useMessage();
   const login = useSelector((state) => state.user.login);
+  const errorMessage = useSelector((state) => state.user.errorMessage);
   const onFinish = (values) => {
     dispatch(
       signIn({
@@ -17,6 +20,12 @@ const SignIn = () => {
     );
   };
   useEffect(() => {
+    if (!errorMessage === false) {
+      notificationSignIn(messageApi, errorMessage);
+    }
+  }, [errorMessage]);
+
+  useEffect(() => {
     if (login) {
       navigate("/articles");
     }
@@ -24,6 +33,7 @@ const SignIn = () => {
 
   return (
     <div className="SignIn">
+      {contextHolder}
       <h2 className="SignIn__title"> Sign In</h2>
       <Form
         onFinish={onFinish}

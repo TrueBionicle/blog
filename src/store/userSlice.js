@@ -9,8 +9,8 @@ import {
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    stateMessage: null,
-    isLogged: false,
+    errorMessage: 0,
+    registrationMessage: null,
     login: false,
     username: null,
     email: null,
@@ -19,23 +19,23 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: {
     [registration.pending]: (state) => {
-      state.stateMessage = null;
       state.loading = true;
     },
     [registration.rejected]: (state, error) => {
-      state.stateMessage = error.error.message;
+      state.registrationMessage = error.error.message;
       state.error = true;
     },
     [registration.fulfilled]: (state) => {
-      state.stateMessage = "created";
-      state.error = true;
+      state.registrationMessage = "created";
+      state.error = false;
     },
     [signIn.rejected]: (state) => {
-      state.isLogged = false;
+      state.errorMessage += 1;
     },
     [signIn.fulfilled]: (state) => {
+      state.errorMessage = false;
+
       state.login = true;
-      state.isLogged = true;
     },
     [checkAuth.rejected]: (state, action) => {
       state.login = false;

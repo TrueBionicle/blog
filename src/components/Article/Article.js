@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Checkbox } from "@mui/material";
+import ReactMarkdown from "react-markdown";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import {
   setFavoriteArticle,
@@ -68,7 +69,9 @@ const Article = (props) => {
           </span>
         ))}
         <p className="article__info__description">{article.description}</p>
-        <p className="article__info__text">{article.body}</p>
+        <ReactMarkdown className="article__info__text">
+          {article.body}
+        </ReactMarkdown>
       </div>
       <div className="article__user">
         <div className="article__user__info">
