@@ -5,6 +5,7 @@ import { Form, Input, Button } from "antd";
 import uniqueKey from "../utilites/uniqueKey";
 import { updateArticle, getArticleBySlug } from "../../store/articleAsyncThunk";
 import { useNavigate, useParams } from "react-router-dom";
+import ButtonBack from "../utilites/ButtonBack";
 
 const EditArticle = () => {
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ const EditArticle = () => {
   };
   return currentArticle !== null ? (
     <div className="create_article_modal">
+      <ButtonBack />
       <h2 className="create_article_modal__title">Edit Article</h2>
       <Form
         onFinish={onFinish}

@@ -4,18 +4,21 @@ import axios from "axios";
 export const getArticles = createAsyncThunk(
   "articles/getArticles",
   async function (page) {
+    console.log("i work");
     const BASE_URL = `https://blog.kata.academy/api/articles?&limit=5&offset=${
       (page - 1) * 5
     }`;
-    const a = axios
+    return axios
       .get(BASE_URL, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Token ${localStorage.getItem("token")}`,
         },
       })
-      .then((res) => res.data);
-    return a;
+      .then((res) => res.data)
+      .catch(() => {
+        throw new Error();
+      });
   }
 );
 
@@ -31,7 +34,6 @@ export const getArticleBySlug = createAsyncThunk(
         },
       })
       .then((res) => res.data);
-    console.log(a);
     return a;
   }
 );
@@ -60,11 +62,8 @@ export const createArticle = createAsyncThunk(
           },
         }
       )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        throw new Error();
       });
     return b;
   }

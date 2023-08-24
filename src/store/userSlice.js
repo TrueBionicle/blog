@@ -1,10 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  registration,
-  signIn,
-  checkAuth,
-  updateProfile,
-} from "./userAsyncThunk";
+import { registration, signIn, checkAuth } from "./userAsyncThunk";
 
 const userSlice = createSlice({
   name: "user",
@@ -48,10 +43,6 @@ const userSlice = createSlice({
         image: action.payload.image,
         login: true,
       });
-    },
-    [updateProfile.rejected]: (error) => [console.log(error)],
-    [updateProfile.fulfilled]: (state, action) => {
-      console.log(action.payload);
     },
   },
 });

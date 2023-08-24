@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Header = () => {
   const login = useSelector((state) => state.user.login);
   const username = useSelector((state) => state.user.username);
+  const image = useSelector((state) => state.user.image);
   const logOut = () => {
     localStorage.setItem("token", "");
   };
@@ -24,14 +25,12 @@ const Header = () => {
         <Link to={"create-article"} className="signUp">
           Create article
         </Link>
-        <Link to={"edit-profile"}>{username}</Link>
-        <div className="article__user__avatar">
-          <img
-            className="avatar"
-            src={require("../../assets/images/avatar.png")}
-            alt="avatar"
-          ></img>
-        </div>{" "}
+        <Link to={"edit-profile"} className="user_info">
+          {username}
+          <div className="article__user__avatar">
+            <img className="avatar" src={image} alt="avatar"></img>
+          </div>{" "}
+        </Link>
         <Link
           to={"sign-in"}
           className="signIn"

@@ -1,0 +1,25 @@
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 500px;
+  background-color: rgba(209, 209, 209, 0);
+}
+
+.error__modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  height: 130px;
+  margin: 0 auto;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  &__text {
+    font-size: 16px;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+}

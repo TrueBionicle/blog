@@ -5,7 +5,7 @@ import uniqueKey from "../utilites/uniqueKey";
 import { createArticle, getArticles } from "../../store/articleAsyncThunk";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import ButtonBack from "../utilites/ButtonBack";
 const CreateArticle = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,6 +30,7 @@ const CreateArticle = () => {
   };
   return (
     <div className="create_article_modal">
+      <ButtonBack />
       <h2 className="create_article_modal__title">Create new article</h2>
       <Form
         onFinish={onFinish}

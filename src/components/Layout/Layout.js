@@ -1,15 +1,16 @@
 import { Outlet } from "react-router-dom";
-
-import "./Layout.scss";
-
+import CircularIndeterminate from "./../utilites/loadingIndicator";
 import Header from "../Header/Header";
-import { Article } from "@mui/icons-material";
-import ArticleList from "../ArticleList/ArticleList";
+import { useSelector } from "react-redux";
+import ModalError from "../ModalError/ModalError";
 const Layout = () => {
+  const loadingState = useSelector((state) => state.articles.loading);
+  const errorState = useSelector((state) => state.articles.error);
   return (
     <>
       <Header />
-      <Outlet />
+      {loadingState ? CircularIndeterminate() : null}
+      {errorState ? <ModalError /> : <Outlet />}
     </>
   );
 };

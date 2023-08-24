@@ -12,15 +12,19 @@ export const articleSlice = createSlice({
     articles: [],
     articlesCount: 0,
     loading: false,
-    state: null,
     articleRequestStatus: false,
     currentArticle: null,
     error: false,
   },
   reducers: {},
   extraReducers: {
+    [getArticles.rejected]: (state) => {
+      state.loading = false;
+      state.error = true;
+    },
     [getArticles.pending]: (state, action) => {
       state.articleRequestStatus = "pending";
+      state.loading = true;
     },
     [getArticles.fulfilled]: (state, action) => {
       state.articles = action.payload.articles;
@@ -28,12 +32,29 @@ export const articleSlice = createSlice({
       state.articleRequestStatus = "fulfilled";
       state.loading = false;
     },
+    [getArticleBySlug.rejected]: (state) => {
+      state.loading = false;
+      state.error = true;
+    },
     [getArticleBySlug.pending]: (state) => {
       state.loading = true;
     },
     [getArticleBySlug.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.currentArticle = action.payload.article;
+      state.loading = false;
+      state.error = false;
+    },
+
+    [createArticle.rejected]: (state) => {
+      state.error = true;
+      state.loading = false;
+    },
+    [createArticle.pending]: (state) => {
+      state.loading = true;
+    },
+    [createArticle.fulfilled]: (state) => {
+      state.articlesCount += 1;
+      state.error = false;
       state.loading = false;
     },
   },

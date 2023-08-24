@@ -47,22 +47,27 @@ export const signIn = createAsyncThunk("sign-in", async function (data) {
 
 export const checkAuth = createAsyncThunk("check-auth", async function () {
   const BASE_URL = `https://blog.kata.academy/api/user`;
-  const b = axios
-    .get(BASE_URL, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${localStorage.getItem("token")}`,
-      },
-    })
-    .then((res) => {
-      return res.data.user;
-    })
-    .catch((error) => {
-      throw new Error(
-        error.response.data.errors.username ? "username" : "email"
-      );
-    });
-  return b;
+  if (localStorage.getItem("token")) {
+    return axios
+      .get(BASE_URL, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        return res.data.user;
+      })
+      .catch((error) => {
+        console.log(error);
+        throw new Error(
+          error.response.data.errors.username ? "username" : "email"
+        );
+      });
+  } else {
+    throw new Error();
+  }
 });
 
 export const updateProfile = createAsyncThunk(

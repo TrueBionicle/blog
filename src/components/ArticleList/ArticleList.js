@@ -10,21 +10,21 @@ import uniqueKey from "../utilites/uniqueKey";
 const ArticleList = () => {
   const dispatch = useDispatch();
   const articles = useSelector((state) => state.articles.articles);
+  const articlesCount = useSelector((state) => state.articles.articlesCount);
   const articleRequestStatus = useSelector(
     (state) => state.articles.articleRequestStatus
   );
 
-  const loadingState = useSelector((state) => state.loading);
+  const loadingState = useSelector((state) => state.articles.loading);
   useEffect(() => {
     dispatch(getArticles(1));
-  }, [dispatch]);
+  }, [dispatch, articlesCount]);
 
   return (
     <>
       {articleRequestStatus === "fulfilled" && (
         <div className="article__list">
-          {/* {loadingState ? CircularIndeterminate() : null} */}
-
+          {loadingState ? CircularIndeterminate() : null}
           {articles.map((article) => {
             return <Article key={uniqueKey()} article={article} />;
           })}

@@ -3,6 +3,7 @@ import "./EditProfile.scss";
 import { Form, Input, Button } from "antd";
 
 import { updateProfile } from "../../store/userAsyncThunk";
+import ButtonBack from "../utilites/ButtonBack";
 
 const EditProfile = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const EditProfile = () => {
   };
   return (
     <div className="create_account_modal">
+      <ButtonBack />
       <h2 className="create_account_modal__title">Edit Profile</h2>
       <Form
         onFinish={onFinish}
