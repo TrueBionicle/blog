@@ -3,7 +3,7 @@ import "./EditProfile.scss";
 import { Form, Input, Button } from "antd";
 
 import { updateProfile } from "../../store/userAsyncThunk";
-import ButtonBack from "../../components/utilites/ButtonBack";
+import ButtonBack from "../../utilites/ButtonBack";
 
 const EditProfile = () => {
   const dispatch = useDispatch();

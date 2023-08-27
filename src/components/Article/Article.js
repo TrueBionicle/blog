@@ -8,8 +8,8 @@ import {
   setFavoriteArticle,
   unfavoriteAnArticle,
 } from "../../store/articleAsyncThunk";
-import uniqueKey from "../utilites/uniqueKey";
-import convertDate from "../utilites/ConvertDate";
+import uniqueKey from "../../utilites/uniqueKey";
+import convertDate from "../../utilites/ConvertDate";
 import "./Article.scss";
 
 const Article = (props) => {

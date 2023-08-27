@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import CircularIndeterminate from "./../utilites/loadingIndicator";
+import CircularIndeterminate from "../../utilites/loadingIndicator";
 import Header from "../../pages/Header/Header";
 import { useSelector } from "react-redux";
 import ModalError from "../../pages/ModalError/ModalError";

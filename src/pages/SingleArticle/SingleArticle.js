@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getArticleBySlug } from "../../store/articleAsyncThunk";
-import ButtonBack from "../../components/utilites/ButtonBack";
+import ButtonBack from "../../utilites/ButtonBack";
 import UserButtons from "./UserButtons/UserButtons";
 import Article from "../../components/Article/Article";
 import "./SingleArticle.scss";

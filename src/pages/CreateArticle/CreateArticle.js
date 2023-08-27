@@ -1,11 +1,13 @@
 import { useState } from "react";
 import "./CreateArticle.scss";
-import { Form, Input, Checkbox, Button } from "antd";
-import uniqueKey from "../../components/utilites/uniqueKey";
+import { Form, Input, Button } from "antd";
 import { createArticle, getArticles } from "../../store/articleAsyncThunk";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import ButtonBack from "../../components/utilites/ButtonBack";
+
+import uniqueKey from "../../utilites/uniqueKey";
+import ButtonBack from "../../utilites/ButtonBack";
+
 const CreateArticle = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
