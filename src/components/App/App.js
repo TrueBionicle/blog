@@ -1,14 +1,14 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.scss";
 
-import ArticleList from "../ArticleList/ArticleList";
-import SingleArticle from "../SingleArticle/SingleArticle";
+import ArticleList from "../../pages/ArticleList/ArticleList";
+import SingleArticle from "../../pages/SingleArticle/SingleArticle";
 import Layout from "../Layout/Layout";
-import CreateAccount from "../CreateAccount/CreateAccount";
-import SignIn from "../SignIn/SignIn";
-import EditProfile from "../EditProfile/EditProfile";
-import CreateArticle from "../CreateArticle/CreateArticle";
-import EditArticle from "../EditArticle/EditArticle";
+import CreateAccount from "../../pages/CreateAccount/CreateAccount";
+import SignIn from "../../pages/SignIn/SignIn";
+import EditProfile from "../../pages/EditProfile/EditProfile";
+import CreateArticle from "../../pages/CreateArticle/CreateArticle";
+import EditArticle from "../../pages/EditArticle/EditArticle";
 import RequireAuth from "../hoc/RequireAuth";
 import { useSelector } from "react-redux";
 

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../../store/userAsyncThunk";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { notificationSignIn } from "../Notification/Notification";
+import { notificationSignIn } from "../../components/Notification/Notification";
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

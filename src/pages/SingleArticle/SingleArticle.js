@@ -2,9 +2,9 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getArticleBySlug } from "../../store/articleAsyncThunk";
-import ButtonBack from "../utilites/ButtonBack";
+import ButtonBack from "../../components/utilites/ButtonBack";
 import UserButtons from "./UserButtons/UserButtons";
-import Article from "../Article/Article";
+import Article from "../../components/Article/Article";
 import "./SingleArticle.scss";
 const SingleArticle = () => {
   const currentArticle = useSelector((state) => state.articles.currentArticle);

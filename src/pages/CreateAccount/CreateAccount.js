@@ -3,7 +3,7 @@ import { Button, Checkbox, Form, Input, message } from "antd";
 import { Link } from "react-router-dom";
 import { registration } from "../../store/userAsyncThunk";
 import { useDispatch } from "react-redux";
-import { notificationRegistration } from "../Notification/Notification";
+import { notificationRegistration } from "../../components/Notification/Notification";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useEffect, useState } from "react";
 const CreateAccount = () => {

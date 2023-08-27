@@ -1,9 +1,9 @@
-import Article from "../Article/Article";
+import Article from "../../components/Article/Article";
 import { useDispatch, useSelector } from "react-redux";
 
-import CircularIndeterminate from "./../utilites/loadingIndicator";
+import CircularIndeterminate from "../../components/utilites/loadingIndicator";
 import { getArticles } from "../../store/articleAsyncThunk";
-import Pagination from "../Pagination/pagination";
+import Pagination from "../../components/Pagination/pagination";
 import "./ArticleList.scss";
 import { useEffect } from "react";
 const ArticleList = () => {

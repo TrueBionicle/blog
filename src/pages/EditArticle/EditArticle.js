@@ -2,10 +2,10 @@ import "./EditArticle.scss";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Input, Button } from "antd";
-import uniqueKey from "../utilites/uniqueKey";
+import uniqueKey from "../../components/utilites/uniqueKey";
 import { updateArticle, getArticleBySlug } from "../../store/articleAsyncThunk";
 import { useNavigate, useParams } from "react-router-dom";
-import ButtonBack from "../utilites/ButtonBack";
+import ButtonBack from "../../components/utilites/ButtonBack";
 
 const EditArticle = () => {
   const navigate = useNavigate();
