@@ -10,26 +10,33 @@ const userSlice = createSlice({
     username: null,
     email: null,
     image: null,
+    userLoading: false,
   },
   reducers: {},
   extraReducers: {
     [registration.pending]: (state) => {
-      state.loading = true;
+      state.userLoading = true;
     },
     [registration.rejected]: (state, error) => {
       state.registrationMessage = error.error.message;
       state.error = true;
+      state.userLoading = false;
     },
     [registration.fulfilled]: (state) => {
       state.registrationMessage = "created";
       state.error = false;
+      state.userLoading = false;
+    },
+    [signIn.pending]: (state) => {
+      state.userLoading = true;
     },
     [signIn.rejected]: (state) => {
       state.errorMessage += 1;
+      state.userLoading = false;
     },
     [signIn.fulfilled]: (state) => {
       state.errorMessage = false;
-
+      state.userLoading = false;
       state.login = true;
     },
     [checkAuth.rejected]: (state, action) => {

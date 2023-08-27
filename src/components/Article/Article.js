@@ -9,7 +9,7 @@ import {
   unfavoriteAnArticle,
 } from "../../store/articleAsyncThunk";
 import uniqueKey from "../utilites/uniqueKey";
-
+import convertDate from "../utilites/ConvertDate";
 import "./Article.scss";
 
 const Article = (props) => {
@@ -18,14 +18,6 @@ const Article = (props) => {
   const [checkFavorite, setCheckFavorite] = useState(article.favorited);
   const [favoritesCount, setFavoritesCount] = useState(article.favoritesCount);
   const dispatch = useDispatch();
-  const setDate = (date) => {
-    const time = new Date(date).toLocaleDateString("en-GB", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    });
-    return time;
-  };
   const checkSinglePage = () => {
     if (singlePage) {
       return "single_page";
@@ -79,7 +71,7 @@ const Article = (props) => {
             {article.author.username}
           </span>
           <span className="article__user__info__date">
-            {setDate(article.createdAt)}
+            {convertDate(article.createdAt)}
           </span>
         </div>
         <div className="article__user__avatar">

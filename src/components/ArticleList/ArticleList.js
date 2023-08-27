@@ -6,7 +6,6 @@ import { getArticles } from "../../store/articleAsyncThunk";
 import Pagination from "../Pagination/pagination";
 import "./ArticleList.scss";
 import { useEffect } from "react";
-import uniqueKey from "../utilites/uniqueKey";
 const ArticleList = () => {
   const dispatch = useDispatch();
   const articles = useSelector((state) => state.articles.articles);
@@ -25,8 +24,8 @@ const ArticleList = () => {
       {articleRequestStatus === "fulfilled" && (
         <div className="article__list">
           {loadingState ? CircularIndeterminate() : null}
-          {articles.map((article) => {
-            return <Article key={uniqueKey()} article={article} />;
+          {articles.map((article, index) => {
+            return <Article key={index} article={article} />;
           })}
         </div>
       )}

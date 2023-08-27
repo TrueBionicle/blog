@@ -4,7 +4,6 @@ import axios from "axios";
 export const getArticles = createAsyncThunk(
   "articles/getArticles",
   async function (page) {
-    console.log("i work");
     const BASE_URL = `https://blog.kata.academy/api/articles?&limit=5&offset=${
       (page - 1) * 5
     }`;
