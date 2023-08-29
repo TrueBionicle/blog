@@ -37,7 +37,6 @@ export const signIn = createAsyncThunk("sign-in", async function (data) {
       localStorage.setItem("token", res.data.user.token);
     })
     .catch((error) => {
-      console.log(error);
       throw new Error(
         error.response.data.errors.username ? "username" : "email"
       );
