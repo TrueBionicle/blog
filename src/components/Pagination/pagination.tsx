@@ -1,14 +1,17 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../store/hooks.ts";
 import { Pagination } from "antd";
 
 import "./pagination.scss";
 import { getArticles } from "../../store/articleAsyncThunk.ts";
 
 const SetPagination = () => {
-  const dispatch = useDispatch();
-  const articlesCount = useSelector((state) => state.articles.articlesCount);
+  const dispatch = useAppDispatch();
+
+  const articlesCount = useAppSelector((state) => state.articles.articlesCount);
+
   const [currentPage, setCurrentPage] = useState(1);
+
   return (
     <Pagination
       current={currentPage}

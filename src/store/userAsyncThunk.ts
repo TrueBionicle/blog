@@ -1,12 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-type UserInfo = {
-  username?: string;
-  email: string;
-  password?: string;
-  image?: string;
-};
+import { UserInfo } from "../types";
 
 export const registration = createAsyncThunk(
   "registration",
@@ -65,11 +60,9 @@ export const checkAuth = createAsyncThunk("check-auth", async function () {
         },
       })
       .then((res) => {
-        console.log(res);
         return res.data.user;
       })
       .catch((error) => {
-        console.log(error);
         throw new Error(
           error.response.data.errors.username ? "username" : "email"
         );
@@ -82,7 +75,6 @@ export const checkAuth = createAsyncThunk("check-auth", async function () {
 export const updateProfile = createAsyncThunk(
   "updateProfile",
   async function ({ username, email, password, image }: UserInfo) {
-    console.log(username, email, password, image);
     const BASE_URL = `https://blog.kata.academy/api/user`;
     const b = axios
       .put(
@@ -103,7 +95,6 @@ export const updateProfile = createAsyncThunk(
         }
       )
       .then((res) => {
-        console.log(res);
         localStorage.setItem("token", res.data.user.token);
         return res.data;
       });

@@ -1,15 +1,16 @@
-import { useDispatch } from "react-redux";
 import "./EditProfile.scss";
 import { Form, Input, Button } from "antd";
-
-import { updateProfile } from "../../store/userAsyncThunk";
+import { useAppDispatch } from "../../store/hooks";
+import { checkAuth, updateProfile } from "../../store/userAsyncThunk";
 import ButtonBack from "../../utilites/ButtonBack";
+import { UserInfo } from "../../types";
 
 const EditProfile = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const onFinish = (values) => {
+  const onFinish = (values: UserInfo) => {
     dispatch(updateProfile(values));
+    dispatch(checkAuth());
   };
   return (
     <div className="create_account_modal">
@@ -60,7 +61,6 @@ const EditProfile = () => {
           name="password"
           rules={[
             {
-              //   required: true,
               message: "Please input your password!",
             },
           ]}
@@ -70,7 +70,6 @@ const EditProfile = () => {
         <Form.Item
           label="Avatar image(url)"
           name="image"
-          //   dependencies={["password"]}
           rules={[
             {
               type: "url",

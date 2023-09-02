@@ -1,13 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { ArticleInfo } from "../types";
 import axios from "axios";
-
-type ArticleInfo = {
-  title: string;
-  description: string;
-  text: string;
-  tagList?: [];
-  slug?: string;
-};
 
 export const getArticles = createAsyncThunk(
   "articles/getArticles",
@@ -31,7 +24,7 @@ export const getArticles = createAsyncThunk(
 
 export const getArticleBySlug = createAsyncThunk(
   "articles/getArticleBySlug",
-  async function (slug) {
+  async function (slug: string) {
     const BASE_URL = `https://blog.kata.academy/api/articles/${slug}`;
     const a = axios
       .get(BASE_URL, {
@@ -76,7 +69,7 @@ export const createArticle = createAsyncThunk(
 
 export const deleteArticle = createAsyncThunk(
   "deleteArticle",
-  async function (slug) {
+  async function (slug: string) {
     const BASE_URL = `https://blog.kata.academy/api/articles/${slug}`;
     axios.delete(BASE_URL, {
       headers: {
@@ -114,7 +107,7 @@ export const updateArticle = createAsyncThunk(
 
 export const setFavoriteArticle = createAsyncThunk(
   "setFavoriteArticle",
-  async function (slug) {
+  async function (slug: string) {
     const BASE_URL = `https://blog.kata.academy/api/articles/${slug}/favorite`;
     axios
       .post(
@@ -133,7 +126,7 @@ export const setFavoriteArticle = createAsyncThunk(
 
 export const unfavoriteAnArticle = createAsyncThunk(
   "setFavoriteArticle",
-  async function (slug) {
+  async function (slug: string) {
     const BASE_URL = `https://blog.kata.academy/api/articles/${slug}/favorite`;
     axios.delete(
       BASE_URL,

@@ -1,10 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  registration,
-  signIn,
-  checkAuth,
-  updateProfile,
-} from "./userAsyncThunk";
+import { registration, signIn, checkAuth } from "./userAsyncThunk";
 type UserState = {
   errorMessage: number;
   registrationMessage: string | undefined;
@@ -69,10 +64,6 @@ const userSlice = createSlice({
           image: action.payload.image,
           login: true,
         });
-      })
-      .addCase(updateProfile.fulfilled, (state, action) => {
-        console.log(action);
-        state.login = false;
       });
   },
 });

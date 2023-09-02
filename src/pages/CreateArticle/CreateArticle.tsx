@@ -2,19 +2,19 @@ import { useState } from "react";
 import "./CreateArticle.scss";
 import { Form, Input, Button } from "antd";
 import { createArticle, getArticles } from "../../store/articleAsyncThunk.ts";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../store/hooks.ts";
 import { useNavigate } from "react-router-dom";
+import { ArticleInfo } from "../../types.ts";
+import uniqueKey from "../../utilites/uniqueKey.ts";
+import ButtonBack from "../../utilites/ButtonBack.tsx";
 
-import uniqueKey from "../../utilites/uniqueKey";
-import ButtonBack from "../../utilites/ButtonBack";
-
-const CreateArticle = () => {
+const CreateArticle: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [tagList, setTagList] = useState([]);
+  const dispatch = useAppDispatch();
+  const [tagList, setTagList] = useState<string[]>([]);
   const [tagValue, setTagValue] = useState("");
   const { TextArea } = Input;
-  const handleClickDeleteTag = (currentIndex) => {
+  const handleClickDeleteTag = (currentIndex: number) => {
     setTagList(tagList.filter((_, index) => index !== currentIndex));
   };
   const handleClickAddTag = () => {
@@ -24,10 +24,10 @@ const CreateArticle = () => {
     }
   };
 
-  const onFinish = (values) => {
+  const onFinish = (values: ArticleInfo) => {
     const result = { ...values, tagList };
     dispatch(createArticle(result));
-    dispatch(getArticles());
+    dispatch(getArticles(1));
     navigate("/articles");
   };
   return (

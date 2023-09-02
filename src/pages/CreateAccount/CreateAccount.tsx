@@ -1,22 +1,23 @@
 import "./CreateAccount.scss";
 import { Button, Checkbox, Form, Input, message } from "antd";
 import { Link } from "react-router-dom";
-import { registration } from "../../store/userAsyncThunk";
-import { useDispatch } from "react-redux";
-import { notificationRegistration } from "../../components/Notification/Notification.js";
-import { useSelector } from "react-redux/es/hooks/useSelector";
+import { registration } from "../../store/userAsyncThunk.ts";
+import { useAppDispatch, useAppSelector } from "../../store/hooks.ts";
+import { notificationRegistration } from "../../components/Notification/Notification.ts";
 import { useEffect } from "react";
+import { UserInfo } from "../../types.ts";
 const CreateAccount = () => {
-  const dispatch = useDispatch();
-  const registrationMessage = useSelector(
+  const dispatch = useAppDispatch();
+  const registrationMessage = useAppSelector(
     (state) => state.user.registrationMessage
   );
   const [messageApi, contextHolder] = message.useMessage();
-  const onFinish = (values) => {
+  const onFinish = (values: UserInfo) => {
     dispatch(registration(values));
   };
   useEffect(() => {
-    notificationRegistration(messageApi, registrationMessage);
+    if (registrationMessage)
+      notificationRegistration(messageApi, registrationMessage);
   }, [registrationMessage]);
 
   return (

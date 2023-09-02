@@ -1,20 +1,21 @@
-import Article from "../../components/Article/Article";
-import { useDispatch, useSelector } from "react-redux";
+import Article from "../../components/Article/Article.tsx";
+import { useAppDispatch, useAppSelector } from "../../store/hooks.ts";
 
-import CircularIndeterminate from "../../utilites/loadingIndicator";
+import CircularIndeterminate from "../../utilites/loadingIndicator.tsx";
 import { getArticles } from "../../store/articleAsyncThunk.ts";
-import Pagination from "../../components/Pagination/pagination";
+import Pagination from "../../components/Pagination/pagination.tsx";
 import "./ArticleList.scss";
 import { useEffect } from "react";
-const ArticleList = () => {
-  const dispatch = useDispatch();
-  const articles = useSelector((state) => state.articles.articles);
-  const articlesCount = useSelector((state) => state.articles.articlesCount);
-  const articleRequestStatus = useSelector(
+const ArticleList: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const articles = useAppSelector((state) => state.articles.articles);
+  console.log(articles);
+  const articlesCount = useAppSelector((state) => state.articles.articlesCount);
+  const articleRequestStatus = useAppSelector(
     (state) => state.articles.articleRequestStatus
   );
 
-  const loadingState = useSelector((state) => state.articles.loading);
+  const loadingState = useAppSelector((state) => state.articles.loading);
   useEffect(() => {
     dispatch(getArticles(1));
   }, [dispatch, articlesCount]);

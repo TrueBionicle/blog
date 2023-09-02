@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../store/hooks.ts";
 import { Link } from "react-router-dom";
 import { Checkbox } from "@mui/material";
 import ReactMarkdown from "react-markdown";
@@ -8,16 +8,20 @@ import {
   setFavoriteArticle,
   unfavoriteAnArticle,
 } from "../../store/articleAsyncThunk.ts";
-import uniqueKey from "../../utilites/uniqueKey";
-import convertDate from "../../utilites/ConvertDate";
+import uniqueKey from "../../utilites/uniqueKey.ts";
+import convertDate from "../../utilites/ConvertDate.ts";
 import "./Article.scss";
 
-const Article = (props) => {
+const Article = (props: any) => {
   const { article, singlePage } = props;
-  const login = useSelector((state) => state.user.login);
+
+  const dispatch = useAppDispatch();
+
+  const login = useAppSelector((state) => state.user.login);
+
   const [checkFavorite, setCheckFavorite] = useState(article.favorited);
   const [favoritesCount, setFavoritesCount] = useState(article.favoritesCount);
-  const dispatch = useDispatch();
+
   const checkSinglePage = () => {
     if (singlePage) {
       return "single_page";
@@ -55,7 +59,7 @@ const Article = (props) => {
           />
           <span className="heart__button__num">{favoritesCount}</span>
         </div>
-        {article.tagList.map((item) => (
+        {article.tagList.map((item: string) => (
           <span key={uniqueKey()} className="article__info__tag">
             {item}
           </span>

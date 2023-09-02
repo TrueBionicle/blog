@@ -1,11 +1,16 @@
 import "./UserButtons.scss";
-
-import { useDispatch } from "react-redux";
 import { deleteArticle } from "../../../store/articleAsyncThunk.ts";
 import { Popconfirm } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-const UserButtons = (props) => {
-  const dispatch = useDispatch();
+import { useAppDispatch } from "../../../store/hooks.ts";
+
+type UserButton = {
+  slug: string;
+  login: boolean;
+};
+
+const UserButtons = (props: UserButton) => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { slug, login } = props;
   return (
@@ -21,7 +26,6 @@ const UserButtons = (props) => {
               navigate("/articles");
             }}
             cancelText="No"
-            onClick={() => {}}
           >
             <button className="article__user__button article__user__button__delete">
               Delete

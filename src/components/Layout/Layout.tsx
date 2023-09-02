@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
 import CircularIndeterminate from "../../utilites/loadingIndicator";
 import Header from "../../pages/Header/Header";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../store/hooks";
 import ModalError from "../../pages/ModalError/ModalError";
 const Layout = () => {
-  const articlesLoading = useSelector((state) => state.articles.loading);
-  const userLoading = useSelector((state) => state.user.userLoading);
-  const errorState = useSelector((state) => state.articles.error);
+  const articlesLoading = useAppSelector((state) => state.articles.loading);
+  const userLoading = useAppSelector((state) => state.user.userLoading);
+  const errorState = useAppSelector((state) => state.articles.error);
   return (
     <>
       <Header />

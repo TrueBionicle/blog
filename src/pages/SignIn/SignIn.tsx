@@ -1,17 +1,18 @@
 import "./SignIn.scss";
 import { Button, Form, Input, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import { signIn } from "../../store/userAsyncThunk";
-import { useDispatch, useSelector } from "react-redux";
+import { signIn } from "../../store/userAsyncThunk.ts";
+import { useAppDispatch, useAppSelector } from "../../store/hooks.ts";
 import { useEffect } from "react";
-import { notificationSignIn } from "../../components/Notification/Notification.js";
-const SignIn = () => {
-  const dispatch = useDispatch();
+import { notificationSignIn } from "../../components/Notification/Notification.ts";
+import { UserInfo } from "../../types.js";
+const SignIn: React.FC = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
-  const login = useSelector((state) => state.user.login);
-  const errorMessage = useSelector((state) => state.user.errorMessage);
-  const onFinish = (values) => {
+  const login = useAppSelector((state) => state.user.login);
+  const errorMessage = useAppSelector((state) => state.user.errorMessage);
+  const onFinish = (values: UserInfo) => {
     dispatch(signIn(values));
   };
   useEffect(() => {

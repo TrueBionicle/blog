@@ -1,22 +1,23 @@
 import { Link } from "react-router-dom";
-
 import "./Header.scss";
 import { useEffect } from "react";
-import { checkAuth, updateProfile } from "../../store/userAsyncThunk";
-import { useDispatch, useSelector } from "react-redux";
+import { checkAuth } from "../../store/userAsyncThunk";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 const Header = () => {
-  const login = useSelector((state) => state.user.login);
-  const username = useSelector((state) => state.user.username);
-  const image = useSelector((state) => state.user.image);
+  const dispatch = useAppDispatch();
+
+  const login = useAppSelector((state) => state.user.login);
+  const username = useAppSelector((state) => state.user.username);
+  const image = useAppSelector((state) => state.user.image);
+
   const logOut = () => {
     localStorage.setItem("token", "");
   };
-  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(checkAuth());
-    dispatch(updateProfile());
-  }, [username, image, login]);
+  }, [username, login]);
 
   return login ? (
     <div className="header">

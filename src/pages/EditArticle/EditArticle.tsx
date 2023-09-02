@@ -1,31 +1,35 @@
 import "./EditArticle.scss";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../store/hooks.ts";
 import { Form, Input, Button } from "antd";
-import uniqueKey from "../../utilites/uniqueKey";
+import uniqueKey from "../../utilites/uniqueKey.ts";
 import {
   updateArticle,
   getArticleBySlug,
 } from "../../store/articleAsyncThunk.ts";
 import { useNavigate, useParams } from "react-router-dom";
-import ButtonBack from "../../utilites/ButtonBack";
+import ButtonBack from "../../utilites/ButtonBack.tsx";
+
+import { ArticleInfo } from "../../types.ts";
 
 const EditArticle = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const currentArticle = useSelector((state) => state.articles.currentArticle);
-  const [tagList, setTagList] = useState([]);
+  const dispatch = useAppDispatch();
+  const currentArticle = useAppSelector(
+    (state) => state.articles.currentArticle
+  );
+  const [tagList, setTagList] = useState<string[]>([]);
   const [tagValue, setTagValue] = useState("");
   const { TextArea } = Input;
 
-  const handleClickDeleteTag = (currentIndex) => {
+  const handleClickDeleteTag = (currentIndex: number) => {
     setTagList(tagList.filter((_, index) => index !== currentIndex));
   };
 
   const { slug } = useParams();
 
   useEffect(() => {
-    dispatch(getArticleBySlug(slug));
+    if (slug) dispatch(getArticleBySlug(slug));
   }, []);
 
   const handleClickAddTag = () => {
@@ -43,7 +47,7 @@ const EditArticle = () => {
     setTagList(currentArticle.tagList);
   }
 
-  const onFinish = (values) => {
+  const onFinish = (values: ArticleInfo) => {
     const slug = currentArticle.slug;
     const result = { ...values, tagList, slug };
     dispatch(updateArticle(result));
