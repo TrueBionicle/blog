@@ -7,7 +7,7 @@ import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import {
   setFavoriteArticle,
   unfavoriteAnArticle,
-} from "../../store/articleAsyncThunk";
+} from "../../store/articleAsyncThunk.ts";
 import uniqueKey from "../../utilites/uniqueKey";
 import convertDate from "../../utilites/ConvertDate";
 import "./Article.scss";

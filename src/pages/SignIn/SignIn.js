@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../../store/userAsyncThunk";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { notificationSignIn } from "../../components/Notification/Notification";
+import { notificationSignIn } from "../../components/Notification/Notification.js";
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -12,17 +12,10 @@ const SignIn = () => {
   const login = useSelector((state) => state.user.login);
   const errorMessage = useSelector((state) => state.user.errorMessage);
   const onFinish = (values) => {
-    dispatch(
-      signIn({
-        email: values.email,
-        password: values.password,
-      })
-    );
+    dispatch(signIn(values));
   };
   useEffect(() => {
-    if (!errorMessage === false) {
-      notificationSignIn(messageApi, errorMessage);
-    }
+    notificationSignIn(messageApi, errorMessage);
   }, [errorMessage]);
 
   useEffect(() => {

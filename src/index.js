@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom/client";
 
 import App from "./components/App/App";
-import store from "./store/store.js";
+import store from "./store/store.ts";
 import { Provider } from "react-redux";
 import { HashRouter } from "react-router-dom";
 

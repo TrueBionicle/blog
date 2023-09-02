@@ -9,14 +9,7 @@ const EditProfile = () => {
   const dispatch = useDispatch();
 
   const onFinish = (values) => {
-    console.log(values);
-    const data = {
-      username: values.username,
-      email: values.email,
-      password: values.password,
-      image: values.image,
-    };
-    dispatch(updateProfile(data));
+    dispatch(updateProfile(values));
   };
   return (
     <div className="create_account_modal">
@@ -43,7 +36,6 @@ const EditProfile = () => {
           name="username"
           rules={[
             {
-              //   required: true,
               message: "Please input your username!",
             },
           ]}

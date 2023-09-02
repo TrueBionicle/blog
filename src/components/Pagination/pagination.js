@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Pagination } from "antd";
 
 import "./pagination.scss";
-import { getArticles } from "../../store/articleAsyncThunk";
+import { getArticles } from "../../store/articleAsyncThunk.ts";
 
 const SetPagination = () => {
   const dispatch = useDispatch();

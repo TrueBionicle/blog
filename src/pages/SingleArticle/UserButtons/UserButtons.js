@@ -1,8 +1,8 @@
 import "./UserButtons.scss";
 
 import { useDispatch } from "react-redux";
-import { deleteArticle } from "../../../store/articleAsyncThunk";
-import { Button, Popconfirm } from "antd";
+import { deleteArticle } from "../../../store/articleAsyncThunk.ts";
+import { Popconfirm } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 const UserButtons = (props) => {
   const dispatch = useDispatch();

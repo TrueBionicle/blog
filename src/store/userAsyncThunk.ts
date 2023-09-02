@@ -1,16 +1,23 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+type UserInfo = {
+  username?: string;
+  email: string;
+  password?: string;
+  image?: string;
+};
+
 export const registration = createAsyncThunk(
   "registration",
-  async function (data) {
+  async function ({ username, email, password }: UserInfo) {
     const BASE_URL = `https://blog.kata.academy/api/users`;
     const b = axios
       .post(BASE_URL, {
         user: {
-          username: `${data.username}`,
-          email: `${data.email}`,
-          password: `${data.password}`,
+          username: username,
+          email: email,
+          password: password,
         },
       })
       .then((res) => console.log(res))
@@ -23,26 +30,29 @@ export const registration = createAsyncThunk(
   }
 );
 
-export const signIn = createAsyncThunk("sign-in", async function (data) {
-  const BASE_URL = `https://blog.kata.academy/api/users/login`;
-  const b = axios
-    .post(BASE_URL, {
-      user: {
-        email: `${data.email}`,
-        password: `${data.password}`,
-      },
-    })
-    .then((res) => {
-      console.log(res);
-      localStorage.setItem("token", res.data.user.token);
-    })
-    .catch((error) => {
-      throw new Error(
-        error.response.data.errors.username ? "username" : "email"
-      );
-    });
-  return b;
-});
+export const signIn = createAsyncThunk(
+  "sign-in",
+  async function ({ email, password }: UserInfo) {
+    const BASE_URL = `https://blog.kata.academy/api/users/login`;
+    const b = axios
+      .post(BASE_URL, {
+        user: {
+          email: email,
+          password: password,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("token", res.data.user.token);
+      })
+      .catch((error) => {
+        throw new Error(
+          error.response.data.errors.username ? "username" : "email"
+        );
+      });
+    return b;
+  }
+);
 
 export const checkAuth = createAsyncThunk("check-auth", async function () {
   const BASE_URL = `https://blog.kata.academy/api/user`;
@@ -71,17 +81,18 @@ export const checkAuth = createAsyncThunk("check-auth", async function () {
 
 export const updateProfile = createAsyncThunk(
   "updateProfile",
-  async function (data) {
+  async function ({ username, email, password, image }: UserInfo) {
+    console.log(username, email, password, image);
     const BASE_URL = `https://blog.kata.academy/api/user`;
     const b = axios
       .put(
         BASE_URL,
         {
           user: {
-            email: data.email,
-            username: data.username,
-            password: data.password,
-            image: data.image,
+            email: email,
+            username: username,
+            password: password,
+            image: image,
           },
         },
         {
@@ -92,6 +103,7 @@ export const updateProfile = createAsyncThunk(
         }
       )
       .then((res) => {
+        console.log(res);
         localStorage.setItem("token", res.data.user.token);
         return res.data;
       });

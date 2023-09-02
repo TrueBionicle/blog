@@ -1,9 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+type ArticleInfo = {
+  title: string;
+  description: string;
+  text: string;
+  tagList?: [];
+  slug?: string;
+};
+
 export const getArticles = createAsyncThunk(
   "articles/getArticles",
-  async function (page) {
+  async function (page: number) {
     const BASE_URL = `https://blog.kata.academy/api/articles?&limit=5&offset=${
       (page - 1) * 5
     }`;
@@ -39,19 +47,17 @@ export const getArticleBySlug = createAsyncThunk(
 
 export const createArticle = createAsyncThunk(
   "createProfile",
-  async function (data) {
+  async function ({ title, description, text, tagList }: ArticleInfo) {
     const BASE_URL = "https://blog.kata.academy/api/articles";
-    console.log(localStorage.getItem("token"));
-    console.log(data.tagList);
     const b = axios
       .post(
         BASE_URL,
         {
           article: {
-            title: `${data.title}`,
-            description: `${data.description}`,
-            body: `${data.text}`,
-            tagList: data.tagList,
+            title: title,
+            description: description,
+            body: text,
+            tagList: tagList,
           },
         },
         {
@@ -83,33 +89,25 @@ export const deleteArticle = createAsyncThunk(
 
 export const updateArticle = createAsyncThunk(
   "updateProfile",
-  async function (data) {
-    const BASE_URL = `https://blog.kata.academy/api/articles/${data.slug}`;
-    const b = axios
-      .put(
-        BASE_URL,
-        {
-          article: {
-            title: data.title,
-            description: data.description,
-            body: data.body,
-            tagList: data.tagList,
-          },
+  async function ({ title, description, text, tagList, slug }: ArticleInfo) {
+    const BASE_URL = `https://blog.kata.academy/api/articles/${slug}`;
+    const b = axios.put(
+      BASE_URL,
+      {
+        article: {
+          title: title,
+          description: description,
+          body: text,
+          tagList: tagList,
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Token ${localStorage.getItem("token")}`,
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${localStorage.getItem("token")}`,
+        },
+      }
+    );
     return b;
   }
 );
@@ -137,17 +135,15 @@ export const unfavoriteAnArticle = createAsyncThunk(
   "setFavoriteArticle",
   async function (slug) {
     const BASE_URL = `https://blog.kata.academy/api/articles/${slug}/favorite`;
-    axios
-      .delete(
-        BASE_URL,
+    axios.delete(
+      BASE_URL,
 
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Token ${localStorage.getItem("token")}`,
-          },
-        }
-      )
-      .then((res) => console.log(res));
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${localStorage.getItem("token")}`,
+        },
+      }
+    );
   }
 );

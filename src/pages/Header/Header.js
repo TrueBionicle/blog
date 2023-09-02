@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 
 import "./Header.scss";
 import { useEffect } from "react";
-import { checkAuth } from "../../store/userAsyncThunk";
+import { checkAuth, updateProfile } from "../../store/userAsyncThunk";
 import { useDispatch, useSelector } from "react-redux";
+
 const Header = () => {
   const login = useSelector((state) => state.user.login);
   const username = useSelector((state) => state.user.username);
@@ -14,7 +15,8 @@ const Header = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(checkAuth());
-  }, [username, login]);
+    dispatch(updateProfile());
+  }, [username, image, login]);
 
   return login ? (
     <div className="header">
@@ -28,7 +30,11 @@ const Header = () => {
         <Link to={"edit-profile"} className="user_info">
           {username}
           <div className="article__user__avatar">
-            <img className="avatar" src={image} alt="avatar"></img>
+            <img
+              className="avatar"
+              src={image || require("../../assets/images/avatar.png")}
+              alt="avatar"
+            ></img>
           </div>{" "}
         </Link>
         <Link

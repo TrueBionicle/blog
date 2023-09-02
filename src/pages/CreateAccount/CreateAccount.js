@@ -3,32 +3,21 @@ import { Button, Checkbox, Form, Input, message } from "antd";
 import { Link } from "react-router-dom";
 import { registration } from "../../store/userAsyncThunk";
 import { useDispatch } from "react-redux";
-import { notificationRegistration } from "../../components/Notification/Notification";
+import { notificationRegistration } from "../../components/Notification/Notification.js";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 const CreateAccount = () => {
   const dispatch = useDispatch();
-  const [regTry, setRegTry] = useState(0);
   const registrationMessage = useSelector(
     (state) => state.user.registrationMessage
   );
-  console.log(registrationMessage);
   const [messageApi, contextHolder] = message.useMessage();
   const onFinish = (values) => {
-    dispatch(
-      registration({
-        username: values.username,
-        email: values.email,
-        password: values.password,
-      })
-    );
-    setRegTry(regTry + 1);
+    dispatch(registration(values));
   };
   useEffect(() => {
-    if (regTry !== 0) {
-      notificationRegistration(messageApi, registrationMessage);
-    }
-  }, [regTry]);
+    notificationRegistration(messageApi, registrationMessage);
+  }, [registrationMessage]);
 
   return (
     <div className="create_account_modal">

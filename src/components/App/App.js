@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./App.scss";
 
 import ArticleList from "../../pages/ArticleList/ArticleList";
@@ -10,11 +10,8 @@ import EditProfile from "../../pages/EditProfile/EditProfile";
 import CreateArticle from "../../pages/CreateArticle/CreateArticle";
 import EditArticle from "../../pages/EditArticle/EditArticle";
 import RequireAuth from "../hoc/RequireAuth";
-import { useSelector } from "react-redux";
 
 const App = () => {
-  const login = useSelector((state) => state.user.login);
-  const navigate = useNavigate();
   return (
     <>
       <Routes>

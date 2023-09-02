@@ -2,7 +2,7 @@ import Article from "../../components/Article/Article";
 import { useDispatch, useSelector } from "react-redux";
 
 import CircularIndeterminate from "../../utilites/loadingIndicator";
-import { getArticles } from "../../store/articleAsyncThunk";
+import { getArticles } from "../../store/articleAsyncThunk.ts";
 import Pagination from "../../components/Pagination/pagination";
 import "./ArticleList.scss";
 import { useEffect } from "react";

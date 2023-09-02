@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./CreateArticle.scss";
 import { Form, Input, Button } from "antd";
-import { createArticle, getArticles } from "../../store/articleAsyncThunk";
+import { createArticle, getArticles } from "../../store/articleAsyncThunk.ts";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
